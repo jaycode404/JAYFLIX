@@ -1,15 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import { AppBar, Toolbar, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
+import styled from 'styled-components';
+
+const theme = createTheme();
+
+const ContenedorVideos = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.2rem;
+  padding: 1rem;
+`;
+
+const ContenedorDiv = styled.div`
+  padding: 0.5rem;
+  width: calc(25% - 1rem); /* Calcula el 25% del ancho de la pantalla y resta 1rem de espacio entre elementos */
+`;
 
 function Videos() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    // Realiza una solicitud HTTP para obtener los datos de la URL
     fetch('http://localhost:3001/videos')
       .then((response) => response.json())
       .then((data) => {
-        // Almacena los datos en el estado
         setVideos(data);
       })
       .catch((error) => {
@@ -18,7 +33,6 @@ function Videos() {
   }, []);
 
   const handleDeleteVideo = (videoId) => {
-    // Mostrar una alerta de confirmación antes de eliminar el video
     Swal.fire({
       title: '¿Estás seguro?',
       text: 'Esta acción no se puede deshacer',
@@ -30,13 +44,11 @@ function Videos() {
       cancelButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        // Realiza una solicitud HTTP para eliminar el video con el ID especificado
         fetch(`http://localhost:3001/videos/${videoId}`, {
           method: 'DELETE',
         })
           .then((response) => response.json())
           .then(() => {
-            // Elimina el video del estado
             setVideos((prevVideos) => prevVideos.filter((video) => video.id !== videoId));
           })
           .catch((error) => {
@@ -46,28 +58,32 @@ function Videos() {
     });
   };
 
-  const width = "300px"
-  const height = "150px"
+  const width = '250px';
+  const height = '150px';
+
   return (
-    <div>
-      <h1>Videos</h1>
-      <ul>
-        {videos.map((video) => (
-          <li key={video.id}>
-            <h2>{video.titulo}</h2>
-            <p>{video.descripcion}</p>
-            <iframe
-              width={width}
-              height={height}
-              src={video.url}
-              title={video.titulo} // Usa el título del video como título del iframe
-              frameBorder="0"
-            ></iframe>
-            <button onClick={() => handleDeleteVideo(video.id)}>Borrar</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div style={{ marginTop: '2rem', width: '100%' }}>
+        <Typography variant='h2' sx={{ padding: '1rem' }}>Videos</Typography>
+        <ContenedorVideos>
+          {videos.map((video) => (
+            <ContenedorDiv key={video.id}>
+              <h2 style={{ height: '1rem', width: width }}>{video.titulo}</h2>
+              <p style={{ height: '2rem', width: width }}>{video.descripcion}</p>
+              <iframe
+                width={width}
+                height={height}
+                src={video.url}
+                title={video.titulo}
+                frameBorder="0"
+              ></iframe>
+              <Button style={{ color: '#ff0000' }} onClick={() => handleDeleteVideo(video.id)}>Borrar</Button>
+
+            </ContenedorDiv>
+          ))}
+        </ContenedorVideos>
+      </div>
+    </ThemeProvider>
   );
 }
 

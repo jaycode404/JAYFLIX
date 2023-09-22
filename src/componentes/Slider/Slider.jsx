@@ -42,7 +42,7 @@ function VideoSlider() {
         slidesToShow: 3, // Cambia el número de elementos a mostrar por slide
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000, // Intervalo de cambio de slide en milisegundos
+        autoplaySpeed: 4000, // Intervalo de cambio de slide en milisegundos
     };
 
     // Renderizar los VideoCard para cada elemento en la lista de videos
