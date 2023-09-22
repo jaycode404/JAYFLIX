@@ -8,6 +8,7 @@ const theme = createTheme();
 const ContenedorVideos = styled.div`
   width: 100%;
   display: grid;
+  overflow-x: hidden;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.2rem;
   padding: 1rem;
@@ -63,13 +64,13 @@ function Videos() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ marginTop: '2rem', width: '100%' }}>
+      <div style={{ marginTop: '2rem', width: '100%', overflow: 'hidden' }}>
         <Typography variant='h2' sx={{ padding: '1rem' }}>Videos</Typography>
         <ContenedorVideos>
           {videos.map((video) => (
             <ContenedorDiv key={video.id}>
-              <h2 style={{ height: '1rem', width: width }}>{video.titulo}</h2>
-              <p style={{ height: '2rem', width: width }}>{video.descripcion}</p>
+              <h2 style={{ margin: '0', height: '2rem', width: width, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{video.titulo}</h2>
+              <p style={{ margin: '0', height: '2rem', width: width, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{video.descripcion}</p>
               <iframe
                 width={width}
                 height={height}
@@ -78,7 +79,6 @@ function Videos() {
                 frameBorder="0"
               ></iframe>
               <Button style={{ color: '#ff0000' }} onClick={() => handleDeleteVideo(video.id)}>Borrar</Button>
-
             </ContenedorDiv>
           ))}
         </ContenedorVideos>
@@ -86,5 +86,6 @@ function Videos() {
     </ThemeProvider>
   );
 }
+
 
 export default Videos;

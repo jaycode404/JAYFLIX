@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-function VideoCard({ width, height, margin, id, titulo, descripcion, url }) {
+function VideoCard({ width, height, margin, id, titulo, descripcion, url, categoria }) {
     // Verifica si video es undefined antes de usarlo
 
     return (
@@ -35,24 +35,7 @@ function VideoCard({ width, height, margin, id, titulo, descripcion, url }) {
                         }}>
                         Título: {titulo}
                     </Typography>
-                    {/* <Typography
-                        sx={{
-                            fontSize: 14,
-                        }}>
-                        ID: {id}
-                    </Typography>
-                    <Typography
-                        sx={{
-                            fontSize: 14,
-                        }}>
-                        Descripción: {descripcion}
-                    </Typography>
-                    <Typography
-                        sx={{
-                            fontSize: 14,
-                        }}>
-                        URL: {url}
-                    </Typography> */}
+             
                 </CardContent>
             </Card>
         </div>

@@ -14,7 +14,7 @@ export default function Banner() {
         <Grid container spacing={2}
             sx={{
                 height: '20rem',
-                marginTop: '4rem',
+                marginTop: '2rem',
                 justifyContent: 'space-around',
                 alignItems: 'center',
             }}
