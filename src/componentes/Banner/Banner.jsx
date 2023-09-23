@@ -1,8 +1,5 @@
-import { Container } from "@mui/system"
 import { Typography } from "@mui/material"
 import Grid from "@mui/material/Grid"
-import styled from "styled-components"
-import VideoCard from "../Video/VideoCard"
 
 const spanStyle = {
     color: '#ff0000', // Cambia este color a tu elección

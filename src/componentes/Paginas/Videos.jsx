@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import { AppBar, Toolbar, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
+import { Typography, Button, createTheme, ThemeProvider } from '@mui/material';
 import styled from 'styled-components';
 
 const theme = createTheme();

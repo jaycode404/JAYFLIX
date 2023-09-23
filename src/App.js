@@ -1,12 +1,10 @@
 import { React, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './componentes/Header/Header';
 import Banner from './componentes/Banner/Banner';
-import MySlider from './componentes/Slider/Slider';
 import Videos from './componentes/Paginas/Videos';
 import NuevoVideo from './componentes/Paginas/NuevoVideo';
 import AcercaDe from './componentes/Paginas/AcercaDe';
-import Seccion from './componentes/Seccion/Seccion';
 import './App.css';
 import VideoSlider from './componentes/Slider/Slider';
 
