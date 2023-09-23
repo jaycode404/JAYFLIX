@@ -5,6 +5,28 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Typography from '@mui/material/Typography';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import './Slider.css' 
+
+const PrevArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <div className="slider-arrow prev-arrow" onClick={onClick}>
+      <FaArrowLeft />
+    </div>
+  );
+};
+
+const NextArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <div className="slider-arrow next-arrow" onClick={onClick}>
+      <FaArrowRight />
+    </div>
+  );
+};
+
+
 
 const StyledSlider = styled(Slider)`
   width: 100%;
@@ -55,6 +77,8 @@ function VideoSlider({ categoria }) {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
+    prevArrow: <PrevArrow />, // Flecha izquierda personalizada
+    nextArrow: <NextArrow />, // Flecha derecha personalizada
   };
 
   // Renderizar los VideoCard para cada elemento en la lista de videos filtrados

@@ -76,6 +76,13 @@
       "categoria": "DevOps",
       "titulo": "Diferencias con DevOps",
       "id": 11
+    },
+    {
+      "url": "https://www.youtube.com/embed/z95mZVUcJ-E",
+      "descripcion": "Aprende Javascript Desde 0",
+      "categoria": "FrontEnd",
+      "titulo": "Javascript Desde Cero",
+      "id": 12
     }
   ]
 }

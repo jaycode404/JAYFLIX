@@ -1,0 +1,30 @@
+/* Estilos para las flechas personalizadas */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 9;
+  }
+  
+  .prev-arrow {
+    left: 0px; /* Alinea la flecha izquierda a 10px del borde izquierdo */
+  }
+  
+  .next-arrow {
+    right: 2px; /* Alinea la flecha derecha a 10px del borde derecho */
+  }
+  
+  .prev-arrow:hover,
+  .next-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
