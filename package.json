@@ -25,10 +25,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build && json-server src/API/api.json",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build && json-server src/API/api.json",
+    "build": "react-scripts build",
     "server": "json-server --watch db.json --port 3001",
     "start-server": "json-server --watch db.json --port 3001",
     "test": "react-scripts test",

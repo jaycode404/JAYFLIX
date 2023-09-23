@@ -33,7 +33,7 @@ function VideoCard({ width, height, margin, id, titulo, descripcion, url, catego
                         sx={{
                             fontSize: 14,
                         }}>
-                        Título: {titulo}
+                         {titulo}
                     </Typography>
              
                 </CardContent>

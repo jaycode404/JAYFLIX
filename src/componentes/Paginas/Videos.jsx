@@ -21,40 +21,48 @@ const ContenedorDiv = styled.div`
 
 function Videos() {
   const [videos, setVideos] = useState([]);
-
   useEffect(() => {
-    fetch('http://localhost:3001/videos')
+    fetch('https://raw.githubusercontent.com/jaycode404/api_jayflix/main/db.json')
       .then((response) => response.json())
       .then((data) => {
-        setVideos(data);
+        // Supongamos que los datos se encuentran en una propiedad llamada "videos" en el objeto recibido
+        // Si es diferente, ajusta esto según la estructura real de tus datos.
+        const videosArray = Object.values(data.videos);
+  
+        // Ahora, videosArray es una matriz de objetos que puedes usar con .map()
+        setVideos(videosArray);
       })
       .catch((error) => {
         console.error('Error al obtener los datos:', error);
       });
   }, []);
-
+  
   const handleDeleteVideo = (videoId) => {
+    // Aquí puedes agregar la lógica para eliminar un video si tu API lo admite
+    // Por ejemplo:
+    // fetch(`https://api-tu-servidor.com/videos/${videoId}`, {
+    //   method: 'DELETE',
+    // })
+    // .then(() => {
+    //   setVideos((prevVideos) => prevVideos.filter((video) => video.id !== videoId));
+    // })
+    // .catch((error) => {
+    //   console.error('Error al eliminar el video:', error);
+    // });
     Swal.fire({
-      title: '¿Estás seguro?',
-      text: 'Esta acción no se puede deshacer',
+      title: 'Eliminar video',
+      text: '¿Estás seguro de que deseas eliminar este video?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, borrar',
-      cancelButtonText: 'No',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3001/videos/${videoId}`, {
-          method: 'DELETE',
-        })
-          .then((response) => response.json())
-          .then(() => {
-            setVideos((prevVideos) => prevVideos.filter((video) => video.id !== videoId));
-          })
-          .catch((error) => {
-            console.error('Error al eliminar el video:', error);
-          });
+        // Aquí puedes agregar la lógica de eliminación real, como el fetch de arriba
+        // y actualizar el estado después de eliminar el video
+        console.log(`Eliminar video con ID ${videoId}`);
       }
     });
   };
@@ -86,6 +94,5 @@ function Videos() {
     </ThemeProvider>
   );
 }
-
 
 export default Videos;

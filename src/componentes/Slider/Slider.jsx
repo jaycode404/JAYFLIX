@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Typography from '@mui/material/Typography';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import './Slider.css' 
+import './Slider.css';
 
 const PrevArrow = (props) => {
   const { onClick } = props;
@@ -26,8 +26,6 @@ const NextArrow = (props) => {
   );
 };
 
-
-
 const StyledSlider = styled(Slider)`
   width: 100%;
   margin: 0 0 2rem 0;
@@ -40,49 +38,44 @@ const StyledDiv = styled.div`
 `;
 
 function VideoSlider({ categoria }) {
-  const urlVideos = "http://localhost:3001/videos";
+  const urlVideos = "https://raw.githubusercontent.com/jaycode404/api_jayflix/main/db.json";
 
   // Estado para almacenar la lista de videos
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    // Realizar la solicitud a la URL para obtener los videos
+    // Realizar la solicitud a la URL para obtener los datos
     fetch(urlVideos)
       .then((response) => response.json())
       .then((data) => {
-        setVideos(data);
+        // Verifica que los datos tengan la estructura adecuada antes de mapear
+        if (data && Array.isArray(data.videos)) {
+          setVideos(data.videos.filter((video) => video.categoria === categoria));
+        } else {
+          console.error("Los datos no tienen la estructura adecuada:", data);
+        }
       })
       .catch((error) => {
         console.error("Error al obtener la información de los videos:", error);
       });
-  }, []);
+  }, [categoria]);
 
-  // Filtrar los videos por la categoría asignada
-  const filteredVideos = videos.filter((video) => video.categoria === categoria);
-  // Calcula la cantidad de videos en la categoría actual
-  const videosEnCategoria = videos.filter((video) => video.categoria === categoria);
+ // Calcula la cantidad de videos disponibles
+const numVideos = videos.length;
 
-  // Calcula la cantidad de elementos a mostrar en el slider
-  let slidesToShow = 3; // Por defecto, muestra 3 elementos
+// Configura slidesToShow para ser 1 si hay 1 video, 2 si hay 2, o máximo 3
+const slidesToShow = numVideos === 1 ? 1 : Math.min(3, numVideos);
 
-  if (videosEnCategoria.length === 1) {
-    slidesToShow = 1; // Si solo hay un video, muestra 1 elemento
-  } else if (videosEnCategoria.length === 2) {
-    slidesToShow = 2; // Si hay dos videos, muestra 2 elementos
-  }
-  // Configuración del slider
-  const sliderSettings = {
-    infinite: true,
-    slidesToShow,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    prevArrow: <PrevArrow />, // Flecha izquierda personalizada
-    nextArrow: <NextArrow />, // Flecha derecha personalizada
-  };
-
-  // Renderizar los VideoCard para cada elemento en la lista de videos filtrados
-  const videoCards = filteredVideos.map((video) => (
+const sliderSettings = {
+  infinite: true,
+  slidesToShow: slidesToShow,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  prevArrow: <PrevArrow />,
+  nextArrow: <NextArrow />,
+};
+  const videoCards = videos.map((video) => (
     <VideoCard
       width='360px'
       height='230px'

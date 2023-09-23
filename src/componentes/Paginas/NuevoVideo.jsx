@@ -50,7 +50,7 @@ function VideoForm() {
       titulo,
     };
 
-    fetch('http://localhost:3001/videos', {
+    fetch('https://raw.githubusercontent.com/jaycode404/api_jayflix/main/db.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
